@@ -22,12 +22,15 @@ onMounted(() => {
   <div v-else-if="error">{{ error }}</div>
   <div v-else-if="pokemon">
     <div>
-      <h1>{{ pokemon.name }}</h1>
-      <img :src="pokemon.sprites.front_default" alt="Image du Pokémon" />
-      <p><strong>Type:</strong> {{ pokemon.types.map(type => type.type.name).join(', ') }}</p>
-      <p><strong>Poids:</strong> {{ pokemon.weight }} hectogrammes</p>
-      <p><strong>Taille:</strong> {{ pokemon.height }} décimètres</p>
-      <p><strong>Numéro du Pokémon:</strong> #{{ pokemon.id }}</p>
+        <v-card class="m-10 border-md" text="">
+            <v-card-title>{{ pokemon.name }}</v-card-title>
+            <img :src="pokemon.sprites.front_default" alt="Image du Pokémon" />
+            <v-card-text><strong>Type:</strong>  {{ pokemon.types.map(type => type.type.name).join(', ') }} </v-card-text>
+            <v-card-text><strong>Poids:</strong>  {{ pokemon.weight }} hectogrammes </v-card-text>
+            <v-card-text><strong>Taille:</strong> {{ pokemon.height }} décimètres</v-card-text>
+            <v-card-text><strong>Numéro du Pokémon:</strong> #{{ pokemon.id }}</v-card-text>
+        </v-card>
+
     </div>
   </div>
   <div v-else>
@@ -39,5 +42,12 @@ onMounted(() => {
 img {
   width: 200px;
   height: 200px;
+}
+
+.v-card {
+  width: 300px;
+  margin: 10px;
+  /* border:solid, black, 2px; */
+
 }
 </style>

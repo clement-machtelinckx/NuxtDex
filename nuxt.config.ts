@@ -1,6 +1,6 @@
 // nuxt.config.js
 
-import vuetify from 'vite-plugin-vuetify'
+import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
@@ -16,11 +16,9 @@ export default defineNuxtConfig({
   },
 
   vite: {
-    css: {
-      preprocessorOptions: {
-        sass: {
-          additionalData: `@import "@/assets/styles/variables.sass";`, // Assurez-vous que le chemin vers variables.sass est correct
-        },
+    vue: {
+      template: {
+        transformAssetUrls,
       },
     },
   },
@@ -31,15 +29,12 @@ export default defineNuxtConfig({
 
   modules: [
     '@pinia/nuxt', // Pinia pour le store
+    (_options, nuxt) => {
+      nuxt.hooks.hook('vite:extendConfig', (config) => {
+        // @ts-expect-error
+        config.plugins.push(vuetify({ autoImport: true }))
+      })},
     // '@vite-pwa/nuxt',  // Si tu utilises PWA, tu peux l'activer
   ],
-  // router: {
-  //   extendRoutes(routes, resolve) {
-  //     routes.push({
-  //       name: 'pokemon',
-  //       path: '/pokemon/:name',
-  //       component: resolve(__dirname, 'pages/pokemon/[name].vue')
-  //     })
-  //   }
-  // }
+
 })
