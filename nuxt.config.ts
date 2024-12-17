@@ -33,4 +33,13 @@ export default defineNuxtConfig({
     '@pinia/nuxt', // Pinia pour le store
     // '@vite-pwa/nuxt',  // Si tu utilises PWA, tu peux l'activer
   ],
+  // router: {
+  //   extendRoutes(routes, resolve) {
+  //     routes.push({
+  //       name: 'pokemon',
+  //       path: '/pokemon/:name',
+  //       component: resolve(__dirname, 'pages/pokemon/[name].vue')
+  //     })
+  //   }
+  // }
 })

@@ -1,7 +1,8 @@
-<script setup>
+<script setup lang="ts">
 import  PokeCounter from '@/components/PokeCounter.vue'
 import { usePokemonStore } from '@/stores/usePokemonStore'
 import { onMounted } from 'vue'
+
 
 
 const pokemonStore = usePokemonStore()
@@ -13,7 +14,6 @@ onMounted(() => {
 <template>
   <div>
     <h1>Liste des Pokémon</h1>
-    <v-btn>Click Me</v-btn>
     <div>
         <PokeCounter />
     </div>

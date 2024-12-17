@@ -16,7 +16,23 @@ const reset = () => {
 <template>
     <div>
       <p>Compteur: {{ counterStore.counter }}</p>
-      <button @click="increment">Incrementer</button>
-      <button @click="reset">Réinitialiser</button>
+      <button class="increment" @click="increment">Incrementer</button>
+      <button class="decrement" @click="reset">Réinitialiser</button>
     </div>
-  </template>
+</template>
+<style scoped>
+  .increment {
+    color: white;
+    padding: 10px;
+    background-color: green;
+    border: black, solid, 2px;
+    margin-left: 10px;
+  }
+  .decrement {
+    color: white;
+    padding: 10px;
+    background-color: red;
+    border: black, solid, 2px;
+    margin-left: 10px;
+  }
+</style>
