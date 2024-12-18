@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import  PokeCounter from '@/components/PokeCounter.vue'
 import { usePokemonStore } from '@/stores/usePokemonStore'
-import {useMoveStore} from '@/stores/useMoveStore'
+import { useMoveStore } from '@/stores/useMoveStore'
 import { onMounted } from 'vue'
 
 
@@ -27,7 +27,7 @@ onMounted(() => {
 
     <ul v-if="!pokemonStore.isLoading && !pokemonStore.error">
       <li v-for="pokemon in pokemonStore.pokemons" :key="pokemon.name">
-        <NuxtLink :to="`/pokemons/${pokemon.name}`">{{ pokemon.name }}</NuxtLink>
+        <NuxtLink :to="{ name: 'pokemons-name', params: { name: pokemon.name } }">{{ pokemon.name }}</NuxtLink>
       </li>
     </ul>
 
