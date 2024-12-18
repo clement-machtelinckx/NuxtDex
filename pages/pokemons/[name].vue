@@ -4,11 +4,12 @@ import PokeResume from '@/components/PokeResume.vue'
 
 const route = useRoute()
 const pokemonName = route.params.name
+
 </script>
 
 <template>
   <div class="container">
-    <PokeResume  :pokemonName="pokemonName" />
+    <PokeResume :pokemonName="pokemonName" />
   </div>
 </template>
 

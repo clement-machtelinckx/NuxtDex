@@ -25,13 +25,13 @@ const visibleMoves = computed(() => pokemon.value?.moves.slice(0, 4) || [])
 const hiddenMoves = computed(() => pokemon.value?.moves.slice(4) || [])
 </script>
 
-<template>
+<template >
 <div>
   <div v-if="isLoading">Chargement...</div>
   <div v-else-if="error">{{ error }}</div>
   <div v-else-if="pokemon">
-    <v-card class="mt-10 border-md" text="">
-      <v-card-title>{{ pokemon.name }}</v-card-title>
+    <v-card class="mt-10 border-md elevation-10" text="">
+      <v-card-title><strong>{{ pokemon.name }}</strong></v-card-title>
       <v-card-item class="image-container">
         <div>
           <img :src="pokemon.sprites.front_default" alt="Image par défaut du Pokémon" />
@@ -45,8 +45,8 @@ const hiddenMoves = computed(() => pokemon.value?.moves.slice(4) || [])
       <v-card-text><strong>Taille:</strong> {{ pokemon.height }} décimètres</v-card-text>
       <v-card-text><strong>Numéro du Pokémon:</strong> #{{ pokemon.id }}</v-card-text>
       
-      <strong>Attaques:</strong>
-      <ul>
+      <v-card-text><strong>Attaques:</strong></v-card-text>
+      <ul class="list-group">
         <li v-for="move in visibleMoves" :key="move.move.name">
           {{ move.move.name }}
           <span v-if="move.version_group_details.length > 0">
@@ -111,5 +111,11 @@ img {
 
 .toggle-button:hover {
   background-color: #1565c0;
+}
+
+.list-group {
+  list-style-type: none;
+  padding: 0;
+  margin-left: 10px;
 }
 </style>
