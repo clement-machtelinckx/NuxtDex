@@ -7,11 +7,16 @@ const pokemonName = route.params.name
 </script>
 
 <template>
-  <div>
-    <PokeResume :pokemonName="pokemonName" />
+  <div class="container">
+    <PokeResume  :pokemonName="pokemonName" />
   </div>
 </template>
 
 <style scoped>
-
+.container {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    height: 100vh;
+  }
 </style>

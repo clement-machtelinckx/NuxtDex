@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, onMounted, computed } from 'vue'
+import { defineProps, onMounted, computed, ref } from 'vue'
 import { usePokeResume } from '@/stores/PokeResume'
 
 const props = defineProps({
@@ -15,25 +15,39 @@ const pokemon = computed(() => pokemonResume.pokemon)
 const isLoading = computed(() => pokemonResume.loading)
 const error = computed(() => pokemonResume.error)
 
+const showAllMoves = ref(false)
+
 onMounted(() => {
   pokemonResume.fetchPokemon(props.pokemonName)
 })
+
+const visibleMoves = computed(() => pokemon.value?.moves.slice(0, 4) || [])
+const hiddenMoves = computed(() => pokemon.value?.moves.slice(4) || [])
 </script>
 
 <template>
+<div>
   <div v-if="isLoading">Chargement...</div>
   <div v-else-if="error">{{ error }}</div>
   <div v-else-if="pokemon">
-    <v-card class="m-10 border-md" text="">
+    <v-card class="mt-10 border-md" text="">
       <v-card-title>{{ pokemon.name }}</v-card-title>
-      <img :src="pokemon.sprites.front_default" alt="Image du Pokémon" />
+      <v-card-item class="image-container">
+        <div>
+          <img :src="pokemon.sprites.front_default" alt="Image par défaut du Pokémon" />
+        </div>
+        <div>
+          <img :src="pokemon.sprites.front_shiny" alt="Image shiny du Pokémon" />
+        </div>
+      </v-card-item>
       <v-card-text><strong>Type:</strong> {{ pokemon.types.map(type => type.type.name).join(', ') }}</v-card-text>
       <v-card-text><strong>Poids:</strong> {{ pokemon.weight }} hectogrammes</v-card-text>
       <v-card-text><strong>Taille:</strong> {{ pokemon.height }} décimètres</v-card-text>
       <v-card-text><strong>Numéro du Pokémon:</strong> #{{ pokemon.id }}</v-card-text>
+      
       <strong>Attaques:</strong>
       <ul>
-        <li v-for="move in pokemon.moves" :key="move.move.name">
+        <li v-for="move in visibleMoves" :key="move.move.name">
           {{ move.move.name }}
           <span v-if="move.version_group_details.length > 0">
             lvl {{ move.version_group_details[0].level_learned_at }}
@@ -42,9 +56,28 @@ onMounted(() => {
             (niveau inconnu)
           </span>
         </li>
+
+        <template v-if="hiddenMoves.length > 0">
+          <li v-show="showAllMoves" v-for="move in hiddenMoves" :key="move.move.name">
+            {{ move.move.name }}
+            <span v-if="move.version_group_details.length > 0">
+              lvl {{ move.version_group_details[0].level_learned_at }}
+            </span>
+            <span v-else>
+              (niveau inconnu)
+            </span>
+          </li>
+          <li>
+
+            <button @click="showAllMoves = !showAllMoves" class="toggle-button">
+              {{ showAllMoves ? 'Masquer les autres attaques' : 'Afficher plus d\'attaques' }}
+            </button>
+          </li>
+        </template>
       </ul>
     </v-card>
   </div>
+</div>
 </template>
 
 <style scoped>
@@ -53,10 +86,30 @@ img {
   height: 200px;
 }
 
+.image-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .v-card {
-  width: 300px;
+  width: 70vh;
   margin: 10px;
   /* border:solid, black, 2px; */
 
+}
+
+.toggle-button {
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin-top: 5px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.toggle-button:hover {
+  background-color: #1565c0;
 }
 </style>
