@@ -7,7 +7,7 @@ onMounted(() => {
   moveStore.fetchMove()
 })
 console.log(moveStore.move)
-// consoel.log(moveStore.fetchMove())
+
 </script>
 <template>
   <div class="ml-10 ">
@@ -19,7 +19,7 @@ console.log(moveStore.move)
         <NuxtLink :to="`/moves/${move.name}`">{{ move.name }}</NuxtLink>
       </li>
     </ul>
-    <!-- Pagination -->
+    
     <div v-if="moveStore.move.next || moveStore.move.previous">
       <button 
           class="btn-pagination"
@@ -37,6 +37,7 @@ console.log(moveStore.move)
   </div>
 </template>
 <style>
+
 .btn-pagination {
   background-color: #1976d2;
   color: white;
@@ -46,4 +47,5 @@ console.log(moveStore.move)
   margin-left: 10px;
   cursor: pointer;
 }
+
 </style>

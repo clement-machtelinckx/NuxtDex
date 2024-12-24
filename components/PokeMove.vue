@@ -39,5 +39,5 @@ onMounted(() => {
 </template>
 
 <style scoped>
-/* Ajoutez vos styles ici si nécessaire */
+
 </style>

@@ -14,25 +14,17 @@ const reset = () => {
 </script>
 
 <template>
-    <div>
-      <p>Compteur: {{ counterStore.counter }}</p>
-      <button class="increment" @click="increment">Incrementer</button>
-      <button class="decrement" @click="reset">Réinitialiser</button>
-    </div>
+  <v-container>
+    <p>Compteur: {{ counterStore.counter }}</p>
+    <v-row class="mb-4">
+      <v-col cols="4" sm="4">
+        <v-btn color="success" @click="increment">Incrementer</v-btn>
+      </v-col>
+      <v-col cols="4" sm="4">
+        <v-btn color="error" @click="reset">Réinitialiser</v-btn>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 <style scoped>
-  .increment {
-    color: white;
-    padding: 10px;
-    background-color: green;
-    border: black, solid, 2px;
-    margin-left: 10px;
-  }
-  .decrement {
-    color: white;
-    padding: 10px;
-    background-color: red;
-    border: black, solid, 2px;
-    margin-left: 10px;
-  }
 </style>

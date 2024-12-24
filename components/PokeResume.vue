@@ -34,10 +34,10 @@ const hiddenMoves = computed(() => pokemon.value?.moves.slice(4) || [])
       <v-card-title><strong>{{ pokemon.name }}</strong></v-card-title>
       <v-card-item class="image-container">
         <div>
-          <img :src="pokemon.sprites.front_default" alt="Image par défaut du Pokémon" />
+          <img :src="pokemon.sprites.other.home.front_default" alt="Image par défaut du Pokémon" />
         </div>
         <div>
-          <img :src="pokemon.sprites.front_shiny" alt="Image shiny du Pokémon" />
+          <img :src="pokemon.sprites.other.home.front_shiny" alt="Image shiny du Pokémon" />
         </div>
       </v-card-item>
       <v-card-text><strong>Type:</strong> {{ pokemon.types.map(type => type.type.name).join(', ') }}</v-card-text>

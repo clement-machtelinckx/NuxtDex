@@ -16,23 +16,52 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
-    <h1>Liste des Pokémon</h1>
-    <div>
+  <v-container>
+    <v-row>
+      <v-col>
+        <h1 class="text-h4 mb-4">Liste des Pokémon</h1>
+      </v-col>
+    </v-row>
+
+    <v-row class="mb-4">
+      <v-col>
         <PokeCounter />
-    </div>
-    <div v-if="pokemonStore.isLoading">Chargement...</div>
+      </v-col>
+    </v-row>
 
-    <div v-if="pokemonStore.error">{{ pokemonStore.error }}</div>
+    <v-row v-if="pokemonStore.isLoading" justify="center">
+      <v-col cols="12" sm="8">
+        <v-alert type="info" text>Chargement...</v-alert>
+      </v-col>
+    </v-row>
 
-    <ul v-if="!pokemonStore.isLoading && !pokemonStore.error">
-      <li v-for="pokemon in pokemonStore.pokemons" :key="pokemon.name">
-        <NuxtLink :to="{ name: 'pokemons-name', params: { name: pokemon.name } }">{{ pokemon.name }}</NuxtLink>
-      </li>
-    </ul>
+    <v-row v-if="pokemonStore.error" justify="center">
+      <v-col cols="12" sm="8">
+        <v-alert type="error" text>{{ pokemonStore.error }}</v-alert>
+      </v-col>
+    </v-row>
 
-  </div>
-  </template>
+    <v-row v-if="!pokemonStore.isLoading && !pokemonStore.error">
+      <v-col cols="4">
+        <v-list>
+          <v-list-item-group>
+            <v-list-item
+              v-for="pokemon in pokemonStore.pokemons"
+              :key="pokemon.name"
+              :to="{ name: 'pokemons-name', params: { name: pokemon.name } }"
+              link
+            >
+              <v-list-item-content>
+                <v-list-item-title>{{ pokemon.name }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-item-group>
+        </v-list>
+      </v-col>
+    </v-row>
+  </v-container>
+</template>
+
   
 
   
