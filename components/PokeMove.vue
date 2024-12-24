@@ -21,7 +21,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="">
+  <div class="mt-16">
     <div v-if="isLoading">Chargement...</div>
     <div v-if="error">
       <v-alert type="error" class="mb-4">{{ error }}</v-alert>

@@ -26,7 +26,7 @@ const hiddenMoves = computed(() => pokemon.value?.moves.slice(4) || [])
 </script>
 
 <template >
-<div>
+<div class="mt-10">
   <div v-if="isLoading">Chargement...</div>
   <div v-else-if="error">{{ error }}</div>
   <div v-else-if="pokemon">
