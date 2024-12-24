@@ -16,14 +16,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <h1 class="text-h4 mb-4">Liste des Pokémon</h1>
-  <v-container>
-    <v-row>
-      <v-col>
-        <h1 class="text-h4 mb-4">Liste des Pokémon</h1>
-      </v-col>
-    </v-row>
+  <title>Liste des Pokémon - Explorez les détails de chaque Pokémon</title>
+  <meta name="description" content="Découvrez une liste détaillée des Pokémon avec leurs types, tailles, poids et attaques. Parfait pour les fans et les curieux !" />
 
+  <v-container class="mt-16">
+    <h1 class="mb-6">Liste des Pokémon</h1>
     <v-row class="mb-4">
       <v-col>
         <PokeCounter />

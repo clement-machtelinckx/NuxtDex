@@ -10,7 +10,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <v-container class="mt-10">
+  <v-container class="mt-16">
     <h1 class="mb-6">Move List</h1>
 
     <v-progress-circular 

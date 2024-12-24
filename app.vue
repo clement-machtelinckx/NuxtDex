@@ -6,6 +6,8 @@ import Header from '@/components/Header.vue'
   <NuxtLayout>
     <NuxtLoadingIndicator />
     <v-app>
+      <link rel="icon" href="/pokebal_ico.png" />
+
       <Header />
       <NuxtPage />
     </v-app>
