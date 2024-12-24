@@ -1,4 +1,4 @@
-<script>
+<script setup lang='ts'>
 import { useRoute } from 'vue-router'
 import PokeMove from '@/components/PokeMove.vue'
 

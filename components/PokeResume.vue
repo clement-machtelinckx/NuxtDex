@@ -95,7 +95,6 @@ img {
 .v-card {
   width: 70vh;
   margin: 10px;
-  /* border:solid, black, 2px; */
 
 }
 

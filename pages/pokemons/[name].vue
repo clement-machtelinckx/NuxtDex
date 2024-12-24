@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang='ts'>
 import { useRoute } from 'vue-router'
 import PokeResume from '@/components/PokeResume.vue'
 
@@ -8,16 +8,16 @@ const pokemonName = route.params.name
 </script>
 
 <template>
-  <div class="container">
+  <v-container class="container">
     <PokeResume :pokemonName="pokemonName" />
-  </div>
+
+</v-container>
 </template>
 
 <style scoped>
 .container {
     display: flex;
     justify-content: center;
-    /* align-items: center; */
     height: 100vh;
   }
 </style>
