@@ -10,6 +10,28 @@ const props = defineProps({
   }
 })
 
+const typeColors = {
+  normal: '#A8A77A',
+  fire: '#EE8130',
+  water: '#6390F0',
+  grass: '#7AC74C',
+  electric: '#F7D02C',
+  ice: '#96D9D6',
+  fighting: '#C22E28',
+  poison: '#A33EA1',
+  ground: '#E2BF65',
+  flying: '#A98FF3',
+  psychic: '#F95587',
+  bug: '#A6B91A',
+  rock: '#B6A136',
+  ghost: '#735797',
+  dragon: '#6F35FC',
+  dark: '#705746',
+  steel: '#B7B7CE',
+  fairy: '#D685AD'
+};
+
+
 const pokemonResume = usePokeResume()
 
 const pokemon = computed(() => pokemonResume.pokemon)
@@ -44,7 +66,11 @@ const hiddenMoves = computed(() => pokemon.value?.moves.slice(4) || [])
             <img :src="pokemon.sprites.other.home.front_shiny" alt="Image shiny du Pokémon" />
           </div>
         </v-card-item>
-        <v-card-text><strong>Type:</strong> {{ pokemon.types.map(type => type.type.name).join(', ') }}</v-card-text>
+        <v-card-item v-for="type in pokemon.types" :key="type.type.name">
+    <v-chip :style="{ backgroundColor: typeColors[type.type.name] }">
+      {{ type.type.name }}
+    </v-chip>
+  </v-card-item>
         <v-card-text><strong>Poids:</strong> {{ pokemon.weight }} hectogrammes</v-card-text>
         <v-card-text><strong>Taille:</strong> {{ pokemon.height }} décimètres</v-card-text>
         <v-card-text><strong>Numéro du Pokémon:</strong> #{{ pokemon.id }}</v-card-text>
