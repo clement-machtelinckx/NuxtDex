@@ -1,6 +1,7 @@
 <script setup>
 import { defineProps, onMounted, computed, ref } from 'vue'
 import { usePokeResume } from '@/stores/PokeResume'
+import PokemonEvolution from '@/components/PokemonEvolution.vue'
 
 const props = defineProps({
   pokemonName: {
@@ -27,6 +28,8 @@ const hiddenMoves = computed(() => pokemon.value?.moves.slice(4) || [])
 
 <template >
 <div class="mt-10">
+
+
   <div v-if="isLoading">Chargement...</div>
   <div v-else-if="error">{{ error }}</div>
   <div v-else-if="pokemon">
@@ -45,7 +48,7 @@ const hiddenMoves = computed(() => pokemon.value?.moves.slice(4) || [])
         <v-card-text><strong>Poids:</strong> {{ pokemon.weight }} hectogrammes</v-card-text>
         <v-card-text><strong>Taille:</strong> {{ pokemon.height }} décimètres</v-card-text>
         <v-card-text><strong>Numéro du Pokémon:</strong> #{{ pokemon.id }}</v-card-text>
-        
+        <PokemonEvolution :pokemonName="props.pokemonName" class="ml-4"/>
         <v-card-text><strong>Attaques:</strong></v-card-text>
         <ul class="list-group">
           <li v-for="move in visibleMoves" :key="move.move.name">
