@@ -76,8 +76,12 @@ const hiddenMoves = computed(() => pokemon.value?.moves.slice(4) || [])
         <v-card-text><strong>Numéro du Pokémon:</strong> #{{ pokemon.id }}</v-card-text>
         <PokemonEvolution :pokemonName="props.pokemonName" class="ml-4"/>
         <v-card-text><strong>Attaques:</strong></v-card-text>
-        <ul class="list-group">
-          <li v-for="move in visibleMoves" :key="move.move.name">
+        <v-list class="list-group">
+          <v-list-item 
+          v-for="move in visibleMoves" 
+          :key="move.move.name"
+          :to="{ name: 'moves-name', params: { name: move.move.name } }"link
+          >
             {{ move.move.name }}
             <span v-if="move.version_group_details.length > 0">
               lvl {{ move.version_group_details[0].level_learned_at }}
@@ -85,10 +89,15 @@ const hiddenMoves = computed(() => pokemon.value?.moves.slice(4) || [])
             <span v-else>
               (niveau inconnu)
             </span>
-          </li>
+          </v-list-item>
 
           <template v-if="hiddenMoves.length > 0">
-            <li v-show="showAllMoves" v-for="move in hiddenMoves" :key="move.move.name">
+            <v-list-item 
+            v-show="showAllMoves" 
+            v-for="move in hiddenMoves" 
+            :key="move.move.name"
+            :to="{ name: 'moves-name', params: { name: move.move.name } }"link
+            >
               {{ move.move.name }}
               <span v-if="move.version_group_details.length > 0">
                 lvl {{ move.version_group_details[0].level_learned_at }}
@@ -96,15 +105,15 @@ const hiddenMoves = computed(() => pokemon.value?.moves.slice(4) || [])
               <span v-else>
                 (niveau inconnu)
               </span>
-            </li>
-            <li>
+            </v-list-item>
+            <v-list-item>
 
               <button @click="showAllMoves = !showAllMoves" class="toggle-button">
                 {{ showAllMoves ? 'Masquer les autres attaques' : 'Afficher plus d\'attaques' }}
               </button>
-            </li>
+            </v-list-item>
           </template>
-        </ul>
+        </v-list>
       </v-card>
     </v-container>
   </div>
