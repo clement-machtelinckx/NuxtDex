@@ -7,6 +7,7 @@ import { onMounted } from 'vue'
 
 
 
+
 const pokemonStore = usePokemonStore()
 const moveStore = useMoveStore()
 onMounted(() => {
@@ -18,14 +19,8 @@ onMounted(() => {
 
 <template>
   <v-container>
-
-    <v-row>
-      <v-col>
-        <h1 class="text-h4 mb-4">Liste des Pokémon</h1>
-      </v-col>
-    </v-row>
-
-    <v-row class="mb-4">
+    <v-row class="mt-16">
+      <h1>Counter</h1>
       <v-col>
         <PokeCounter />
       </v-col>
