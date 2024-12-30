@@ -1,6 +1,6 @@
 <script setup>
 import { defineProps, onMounted, computed, ref } from 'vue'
-import { usePokeResume } from '@/stores/PokeResume'
+import { usePokeResume } from '@/stores/pokeResume'
 import PokemonEvolution from '@/components/PokemonEvolution.vue'
 
 const props = defineProps({
