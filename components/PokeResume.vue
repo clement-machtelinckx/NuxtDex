@@ -67,10 +67,10 @@ const hiddenMoves = computed(() => pokemon.value?.moves.slice(4) || [])
           </div>
         </v-card-item>
         <v-card-item v-for="type in pokemon.types" :key="type.type.name">
-    <v-chip :style="{ backgroundColor: typeColors[type.type.name] }">
-      {{ type.type.name }}
-    </v-chip>
-  </v-card-item>
+          <v-chip :style="{ backgroundColor: typeColors[type.type.name] }">
+            {{ type.type.name }}
+          </v-chip>
+        </v-card-item>
         <v-card-text><strong>Poids:</strong> {{ pokemon.weight }} hectogrammes</v-card-text>
         <v-card-text><strong>Taille:</strong> {{ pokemon.height }} décimètres</v-card-text>
         <v-card-text><strong>Numéro du Pokémon:</strong> #{{ pokemon.id }}</v-card-text>
