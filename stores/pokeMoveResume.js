@@ -11,7 +11,7 @@ export const useMoveStoreResume = defineStore('moveStoreResume', () => {
     error.value = null
 
     try {
-      const response = await fetch(`https://pokeapi.co/api/v2/move/${name}`)
+      const response = await fetch(`https://pokeapi.co/api/v2/move/${name}/`)
       const data = await response.json()
       move.value = data
     } catch (err) {

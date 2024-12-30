@@ -7,10 +7,14 @@ const moveName = route.params.name
 
 </script>
 <template>
-    <div>
+  <v-container class="container">
         <PokeMove :moveName="moveName" />
-    </div>
+    </v-container>
 </template>
-<style>
-
+<style scoped>
+.container {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+  }
 </style>

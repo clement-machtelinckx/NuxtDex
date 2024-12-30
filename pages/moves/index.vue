@@ -13,12 +13,17 @@ onMounted(() => {
   <v-container class="mt-16">
     <h1 class="mb-6">Move List</h1>
 
+      <v-container 
+    class="d-flex align-center justify-center" 
+    v-if="moveStore.isLoading" 
+    style="height: 65vh;"
+  >
     <v-progress-circular 
-      v-if="moveStore.isLoading" 
       indeterminate 
       color="primary" 
       size="40"
     />
+  </v-container>
 
     <v-alert 
       v-else-if="moveStore.error" 
@@ -31,8 +36,10 @@ onMounted(() => {
     <v-list 
       v-else-if="!moveStore.isLoading && !moveStore.error && moveStore.move.results" 
       dense
+      class="overflow-y-hidden"
     >
     <v-list-item
+              class="mb-n6"
               v-for="move in moveStore.move.results"
               :key="move.name"
               :to="{ name: 'moves-name', params: { name: move.name } }"
