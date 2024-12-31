@@ -11,6 +11,9 @@ const increment = () => {
 const reset = () => {
     counterStore.reset()
 }
+const decrement = () => {
+    counterStore.decrement()
+}
 </script>
 
 <template>
@@ -19,6 +22,9 @@ const reset = () => {
     <v-row class="mb-4">
       <v-col cols="4" sm="4">
         <v-btn color="info" @click="increment">Incrementer</v-btn>
+      </v-col>
+      <v-col cols="4" sm="4">
+        <v-btn color="warning" @click="decrement">Decrement</v-btn>
       </v-col>
       <v-col cols="4" sm="4">
         <v-btn color="error" @click="reset">Réinitialiser</v-btn>

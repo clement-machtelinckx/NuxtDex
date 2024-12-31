@@ -3,6 +3,7 @@ import { defineProps, onMounted, computed, ref } from 'vue'
 import { usePokeResume } from '@/stores/pokeResume'
 import PokemonEvolution from '@/components/PokemonEvolution.vue'
 
+
 const props = defineProps({
   pokemonName: {
     type: String,
@@ -39,6 +40,12 @@ const isLoading = computed(() => pokemonResume.loading)
 const error = computed(() => pokemonResume.error)
 
 const showAllMoves = ref(false)
+
+const openDialog = (moveName) => {
+  console.log("Move selected:", moveName);
+  selectedMove.value = moveName
+  dialogActive.value = true
+}
 
 onMounted(() => {
   pokemonResume.fetchPokemon(props.pokemonName)
