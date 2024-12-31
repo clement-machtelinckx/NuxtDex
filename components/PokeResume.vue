@@ -71,9 +71,16 @@ const hiddenMoves = computed(() => pokemon.value?.moves.slice(4) || [])
             {{ type.type.name }}
           </v-chip>
         </v-card-item>
-        <v-card-text><strong>Poids:</strong> {{ pokemon.weight }} hectogrammes</v-card-text>
-        <v-card-text><strong>Taille:</strong> {{ pokemon.height }} décimètres</v-card-text>
-        <v-card-text><strong>Numéro du Pokémon:</strong> #{{ pokemon.id }}</v-card-text>
+        <v-card-text class="mb-n4"><strong>Poids:</strong> {{ pokemon.weight }} hectogrammes</v-card-text>
+        <v-card-text class="mb-n4"><strong>Taille:</strong> {{ pokemon.height }} décimètres</v-card-text>
+        <v-card-text class="mb-4"><strong>Numéro du Pokémon:</strong> #{{ pokemon.id }}</v-card-text>
+        <v-card-title class="mb-4"><strong>BASE STATS: </strong></v-card-title>
+        <v-card-text class="mb-n4"><strong>HP: </strong> {{ pokemon.stats[0].base_stat }} </v-card-text>
+        <v-card-text class="mb-n4"><strong>ATTACK: </strong> {{ pokemon.stats[1].base_stat }} </v-card-text>
+        <v-card-text class="mb-n4"><strong>DEFFENSE: </strong> {{ pokemon.stats[2].base_stat }} </v-card-text>
+        <v-card-text class="mb-n4"><strong>SPECIAL-ATTACK: </strong> {{ pokemon.stats[3].base_stat }} </v-card-text>
+        <v-card-text class="mb-n4"><strong>SPECIAL-DEFENCE: </strong> {{ pokemon.stats[4].base_stat }} </v-card-text>
+        <v-card-text class="mb-4"><strong>SPEED: </strong> {{ pokemon.stats[5].base_stat }} </v-card-text>
         <PokemonEvolution :pokemonName="props.pokemonName" class="ml-4"/>
         <v-card-text><strong>Attaques:</strong></v-card-text>
         <v-list class="list-group">

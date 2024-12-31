@@ -7,7 +7,7 @@ export const usePokemonStore = defineStore('pokemonStore', () => {
   const error = ref(null)
   const next = ref(null)
   const previous = ref(null)
-  const sprites = reactive({})
+  const pokemonDetails  = reactive({})
 
   const fetchPokemons = async () => {
     isLoading.value = true
@@ -20,11 +20,11 @@ export const usePokemonStore = defineStore('pokemonStore', () => {
       next.value = data.next
       previous.value = data.previous
 
-      for (const pokemon of data.results) {
-        if (!sprites[pokemon.name]) {
-          await fetchSprites(pokemon.url)
-        }
+    for (const pokemon of data.results) {
+      if (!pokemonDetails[pokemon.name]) {
+        await fetchPokemonDetails(pokemon.url)
       }
+    }
 
     } catch (err) {
       error.value = err.message
@@ -45,8 +45,8 @@ export const usePokemonStore = defineStore('pokemonStore', () => {
       previous.value = data.previous
 
       for (const pokemon of data.results) {
-        if (!sprites[pokemon.name]) {
-          await fetchSprites(pokemon.url)
+        if (!pokemonDetails[pokemon.name]) {
+          await fetchPokemonDetails(pokemon.url)
         }
       }
 
@@ -57,7 +57,7 @@ export const usePokemonStore = defineStore('pokemonStore', () => {
     }
   }
 
-  const fetchSprites = async (url) => {
+  const fetchPokemonDetails  = async (url) => {
     isLoading.value = true
     error.value = null
 
@@ -65,7 +65,14 @@ export const usePokemonStore = defineStore('pokemonStore', () => {
       const response = await fetch(url)
       const data = await response.json()
 
-      sprites[data.name] = data.sprites.front_default
+      pokemonDetails[data.name] = {
+        sprite: data.sprites.front_default,
+        stats: data.stats.map(stat => ({
+          name: stat.stat.name,
+          value: stat.base_stat,
+        })),
+      }
+
     } catch (err) {
       error.value = err.message
     } finally {
@@ -73,5 +80,5 @@ export const usePokemonStore = defineStore('pokemonStore', () => {
     }
   }
 
-  return { pokemons, isLoading, error, next, previous, sprites, fetchPokemons, fetchPokeByUrl }
+  return { pokemons, isLoading, error, next, previous, pokemonDetails, fetchPokemons, fetchPokeByUrl }
 })

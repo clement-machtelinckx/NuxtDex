@@ -45,13 +45,19 @@ onMounted(() => {
                 :to="{ name: 'pokemons-name', params: { name: pokemon.name } }"
                 link
               >
-                <v-list-item-avatar>
-                  <v-img :src="pokemonStore.sprites[pokemon.name]" class="h-25 w-25" lazy-src="" />
-                </v-list-item-avatar>
                 <v-list-item-content>
-                  <v-list-item-title>{{ pokemon.name }}</v-list-item-title>
+                  <v-list-item-title><strong>{{ pokemon.name }}</strong></v-list-item-title>
                 </v-list-item-content>
-              </v-list-item>
+                <v-list-item-avatar>
+                  <v-img :src="pokemonStore.pokemonDetails[pokemon.name]?.sprite" class="h-25 w-25" lazy-src="" />
+                </v-list-item-avatar>
+                
+                <v-list-content>
+                <span v-for="stat in pokemonStore.pokemonDetails[pokemon.name]?.stats" :key="stat.name">
+                  <v-card-text class="mb-n4">{{ stat.name }}: {{ stat.value }}</v-card-text>
+                </span>
+              </v-list-content>
+            </v-list-item>
             </v-card>
           </v-col>
         </v-row>
