@@ -19,6 +19,33 @@ export const usePokeResume = defineStore('pokeResume', () => {
       error.value = err 
     } finally {
       loading.value = false  
+      savePokemon(pokemon.value)
+    }
+  }
+
+  const savePokemon = async (pokemon) => {
+    try {
+      const response = await fetch('http://localhost:4041/api/pokemons', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/ld+json' },
+        body: JSON.stringify({
+          name: pokemon.name,
+          pokeId: pokemon.id,
+          height: pokemon.height,
+          weight: pokemon.weight,
+          hp: pokemon.stats[0].base_stat,
+          attack: pokemon.stats[1].base_stat,
+          defense: pokemon.stats[2].base_stat,
+          specialAttack: pokemon.stats[3].base_stat,
+          specialDefense: pokemon.stats[4].base_stat,
+          speed: pokemon.stats[5].base_stat,
+        }),
+      })
+      if (!response.ok) {
+        throw new Error('Failed to save Pokémon')
+      }
+    } catch (err) {
+      console.error('Error saving Pokémon:', err)
     }
   }
 
