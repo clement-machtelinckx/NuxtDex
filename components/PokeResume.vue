@@ -84,9 +84,9 @@ const hiddenMoves = computed(() => pokemon.value?.moves.slice(4) || [])
         <v-card-title class="mb-4"><strong>BASE STATS: </strong></v-card-title>
         <v-card-text class="mb-n4"><strong>HP: </strong> {{ pokemon.stats[0].base_stat }} </v-card-text>
         <v-card-text class="mb-n4"><strong>ATTACK: </strong> {{ pokemon.stats[1].base_stat }} </v-card-text>
-        <v-card-text class="mb-n4"><strong>DEFFENSE: </strong> {{ pokemon.stats[2].base_stat }} </v-card-text>
+        <v-card-text class="mb-n4"><strong>DEFENSE: </strong> {{ pokemon.stats[2].base_stat }} </v-card-text>
         <v-card-text class="mb-n4"><strong>SPECIAL-ATTACK: </strong> {{ pokemon.stats[3].base_stat }} </v-card-text>
-        <v-card-text class="mb-n4"><strong>SPECIAL-DEFENCE: </strong> {{ pokemon.stats[4].base_stat }} </v-card-text>
+        <v-card-text class="mb-n4"><strong>SPECIAL-DEFENSE: </strong> {{ pokemon.stats[4].base_stat }} </v-card-text>
         <v-card-text class="mb-4"><strong>SPEED: </strong> {{ pokemon.stats[5].base_stat }} </v-card-text>
         <PokemonEvolution :pokemonName="props.pokemonName" class="ml-4"/>
         <v-card-text><strong>Attaques:</strong></v-card-text>
